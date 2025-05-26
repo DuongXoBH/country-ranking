@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from 'react'
+import { useEffect, type RefObject } from "react";
 
 /**
  * Hook that handles clicking outside of specified element(s)
@@ -12,25 +12,25 @@ export function useOutsideClick(
   enabled = true
 ) {
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled) return;
 
     const handleClickOutside = (event: MouseEvent) => {
       // Check if click is outside all provided refs
       const clickedOutside = refs.every(
         (ref) => !ref.current || !ref.current.contains(event.target as Node)
-      )
+      );
 
       if (clickedOutside) {
-        handler()
+        handler();
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [refs, handler, enabled])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [refs, handler, enabled]);
 }
 
-export default useOutsideClick
+export default useOutsideClick;

@@ -1,5 +1,4 @@
 import type { ICountryResponse } from "@/types";
-import { Link } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export const countriesColumns: ColumnDef<ICountryResponse>[] = [
@@ -11,11 +10,7 @@ export const countriesColumns: ColumnDef<ICountryResponse>[] = [
     cell: ({ row }) => {
       const flags = row.original.flags;
 
-      return (
-        <Link to="/$countryCode" params={{ countryCode: row.original.ccn3 }}>
-          <img src={flags.png} alt="" width={55} height={40} />
-        </Link>
-      );
+      return <img src={flags.png} alt="" width={55} height={40} />;
     },
     enableSorting: false,
     meta: "w-[14%]",
